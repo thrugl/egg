@@ -1,32 +1,49 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+		<TopScreen/>
+		<OrderScreen/>
+		<LocationScreen/>
+		<ContactScreen/>
+
+		<footer class="text-center text-white py-8 z-index-50 bg-gray-900 bg-opacity-25 shadow-inner">
+			<small>
+				<span>Sprautuverk ehf, kt. 123456-1200</span>
+				<br class="lg:hidden"/> 
+				<span class="lg:ml-4">{{ config.address.dative }}</span>
+				<br class="lg:hidden"/> 
+				<MainPhone size="3" class="lg:ml-4"/> <MainEmail size="3" class="ml-4"/>
+			</small>
+		</footer>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import config      from '%/config.json'
+import formatPhone from '@/functions/formatPhone'
 
-#nav {
-  padding: 30px;
+import { defineComponent } from 'vue'
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+import ContactScreen  from '@@/screens/ContactScreen.vue'
+import LocationScreen from '@@/screens/LocationScreen.vue'
+import MainEmail      from '@@/bits/MainEmail.vue'
+import MainPhone      from '@@/bits/MainPhone.vue'
+import OrderScreen    from '@@/screens/OrderScreen.vue'
+import TopScreen      from '@@/screens/TopScreen.vue'
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+export default defineComponent({
+	name: 'Sprautuverk',
+
+	components: {
+		ContactScreen,
+		LocationScreen,
+		MainEmail,
+		MainPhone,
+		OrderScreen,
+		TopScreen
+	},
+
+	setup () {
+		return { config, formatPhone }
+	}
+})
+</script>

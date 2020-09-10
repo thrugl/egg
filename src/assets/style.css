@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.base {
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+}
+.oomph {
+	font-family: 'Staatliches', sans-serif;
+}
+
+.gray-gradient {
+	@apply bg-gradient-to-br to-black from-gray-900 shadow-inner;
+}
+
+body {
+	@apply base;
+}
+h1, h2, h3, h4, h5 {
+	@apply oomph;
+}
+h2 {
+	@apply text-xl;
+}
+a {
+	@apply font-bold border-b border-orange-400;
+}
+a:hover {
+	@apply text-gray-400 border-orange-700;
+}
