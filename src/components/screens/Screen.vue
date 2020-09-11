@@ -10,12 +10,14 @@
 			'px-6 py-24': !noPadding,
 			[tintColor]: tint
 		}">
-			<header>
-				<h2 v-if="heading" class="text-orange-600 mb-2 lg:text-4xl lg:text-center">
-					{{ heading }}
-				</h2>
-			</header>
-			<slot/>
+			<div class="container relative">
+				<header>
+					<h2 v-if="heading" class="text-orange-600 mb-2 lg:text-4xl lg:text-center">
+						{{ heading }}
+					</h2>
+				</header>
+				<slot/>
+			</div>
 		</div>
 	</component>
 </template>

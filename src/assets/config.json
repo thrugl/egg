@@ -4,10 +4,14 @@
 	"phone": "5544550",
 	"mobile": "7798464",
 	"email": "sprautuverk@sprautuverk.is",
-	"address": {
-		"nominative": "Smiðjuvegur 10, rauð gata, 200 Kópavogur",
-		"dative": "Smiðjuvegi 10, rauð gata, 200 Kópavogi"
-	},
+	"address": [
+		"Smiðjuvegur 10, rauð gata",
+		"Smiðjuvegi 10, rauð gata"
+	],
+	"city": [
+		"200 Kópavogur",
+		"200 Kópavogi"
+	],
 	"openingHours": "8:00-16:00",
 	"openDays": "alla virka daga",
 	"idNumber": "123456-7890"
