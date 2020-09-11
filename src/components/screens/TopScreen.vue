@@ -23,7 +23,10 @@
 				'xl -> pt-12'
 			)">
 				<div :class="cl(
-					'lg -> flex justify-end items-center'
+					'',
+					'lg -> flex justify-end items-end',
+					'lg -> border-b border-gray-900 pb-6',
+					'xl -> items-center pb-4'
 				)">
 					<MainPhone class="text-4xl oomph text-orange-600 hover:text-orange-700 font-light" size="8"/>
 					
@@ -56,8 +59,9 @@
 				</div>
 
 				<nav :class="cl(
-					'pt-4 text-center',
-					'lg -> pl-24 pr-24'
+					'pt-12 text-center',
+					'lg -> pt-6 pl-24 pr-24',
+					'xl -> pt-4'
 				)">
 					<ul class="block w-full lg:flex">
 						<li class="lg:w-1/3">

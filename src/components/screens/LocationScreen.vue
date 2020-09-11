@@ -1,5 +1,5 @@
 <template>
-	<Screen id="stadsetning" heading="Staðsetning" class="" style="background-image: url(sideview.png)" tint="gray-700">
+	<Screen id="stadsetning" heading="Staðsetning" class="" style="background-image: url(sideview-red.png)" tint="black">
 
 			<div class="bg-gray-600 mt-12 w-full max-w-3xl h-96 mx-auto">
 				<iframe class="h-full w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d435.49908740854863!2d-21.848375270710424!3d64.11218669897373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48d6735d50748055%3A0x87361d50caa4897f!2zUmF1w7BnYXRhIDEwLCBLw7NwYXZvZ3Vy!5e0!3m2!1sen!2sis!4v1599751231905!5m2!1sen!2sis" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>

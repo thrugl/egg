@@ -5,10 +5,10 @@
 		'gray-gradient': gradient,
 		'border-b border-gray-900': !noBorder
 	}">
-		<div :class="{
+		<div :style="tint ? 'background-image: url(tint.png)' : ''" :class="{
 			'relative h-full w-full': true,
 			'px-6 py-24': !noPadding,
-			[tintColor]: tint
+			'bg-cover bg-no-repeat': tint
 		}">
 			<div class="container relative">
 				<header>
@@ -35,12 +35,12 @@ export default defineComponent({
 		gradient: { type: Boolean, default: false },
 		noPadding: { type: Boolean, default: false },
 		noBorder: { type: Boolean, default: false },
-		tint: { type: String, default: '' }
+		tint: { type: Boolean, default: false }
 	},
 	
 	setup (props) {
 		return {
-			tintColor: `bg-${props.tint} bg-opacity-25`
+			tintColor: `bg-gradient-to-br from-tint-start to-tint-end`
 		}
 	}
 })
