@@ -1,5 +1,5 @@
 <template>
-	<Screen no-padding class="text-center bg-fixed bg-contain bg-no-repeat bg-bottom min-h-screen" style="background-image: url(sideview.png)">
+	<Screen no-padding class="text-center min-h-screen" image="1">
 		<div :class="cl(
 			'p-6',
 			'lg -> flex'

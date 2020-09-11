@@ -1,5 +1,5 @@
 <template>
-	<Screen gradient no-border id="hafa-samband" heading="Hafa samband">
+	<Screen no-border id="hafa-samband" heading="Hafa samband" tint="3" image="3">
 		
 		<form name="contact" 
 			data-netlify="true" 

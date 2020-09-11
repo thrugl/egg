@@ -1,5 +1,5 @@
 <template>
-	<Screen gradient id="panta" heading="Panta tíma" class="shadow-xl">
+	<Screen id="panta" heading="Panta tíma" tint="1" image="2">
 		<div class="mx-auto" :style="{ maxWidth: '400px' }">
 			<TextField required label="Bílnúmer" name="licence-plate" @update="onUpdate"/>
 			<TextField required label="Umráðamaður bifreiðar" name="owner"/>

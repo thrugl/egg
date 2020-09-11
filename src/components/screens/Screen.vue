@@ -1,14 +1,16 @@
 <template>
-	<component :is="tag" :id="id" :class="{
+	<component :is="tag" :id="id" :style="`background-image: url(car-${image}.jpg)`" :class="{
 		'text-white relative': true,
 		'bg-fixed bg-contain bg-no-repeat bg-bottom': true,
 		'gray-gradient': gradient,
-		'border-b border-gray-900': !noBorder
+		'border-b-4 border-gray-900': !noBorder,
+		'lg:min-h-screen': true
 	}">
-		<div :style="tint ? 'background-image: url(tint.png)' : ''" :class="{
+		<div :style="tint ? `background-image: url(tint-${tint}.png)` : ''" :class="{
 			'relative h-full w-full': true,
 			'px-6 py-24': !noPadding,
-			'bg-cover bg-no-repeat': tint
+			'bg-cover bg-no-repeat shadow-inner': tint,
+			'lg:min-h-screen': true
 		}">
 			<div class="container relative">
 				<header>
@@ -35,7 +37,8 @@ export default defineComponent({
 		gradient: { type: Boolean, default: false },
 		noPadding: { type: Boolean, default: false },
 		noBorder: { type: Boolean, default: false },
-		tint: { type: Boolean, default: false }
+		tint: { type: [Number, String], default: 0 },
+		image: { type: [Number, String], default: 0 }
 	},
 	
 	setup (props) {
