@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import config from '%/config.json'
+import config from '@/config.json'
 
 import { defineComponent } from 'vue'
 import { replace } from 'ramda'

@@ -1,4 +1,4 @@
-import config      from '%/config.json'
+import config      from './config.json'
 import router      from './router'
 import useTailwind from '#/useTailwind'
 
