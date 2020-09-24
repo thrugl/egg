@@ -5,7 +5,7 @@
 			data-netlify="true" 
 			data-netlify-honeypot="bot-field" 
 			style="max-width: 400px" 
-			class="mx-auto"
+			class="mx-auto block"
 			@submit.prevent="onSubmit"
 		>
 			<TextField v-model="name" required label="Nafn" name="name"/>
@@ -16,22 +16,23 @@
 			<Button text="Senda"/>
 		</form>
 
+		<slot/>
 	</Screen>
 </template>
 
 <script lang="ts">
-import axios from 'axios'
+import axios  from 'axios'
 
 import { defineComponent, ref, computed } from 'vue'
 
-import Button from '@@/gui/Button.vue'
-import Screen from '@@/screens/Screen.vue'
+import Button    from '@@/gui/Button.vue'
+import Screen    from '@@/screens/Screen.vue'
 
 import { AreaField, TextField } from '@@/gui/fields'
 import { o, join, toPairs, map } from 'ramda'
 
 export default defineComponent({
-	name: 'TopScreen',
+	name: 'ContactScreen',
 
 	components: {
 		AreaField,

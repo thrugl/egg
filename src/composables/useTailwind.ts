@@ -1,34 +1,43 @@
 import prefix from '@/functions/prefix'
-import toKeys from '@/functions/toKeys'
 
-import { compose, o, join, map, split, reject, isEmpty, trim, includes } from 'ramda'
+import { compose, o, join, map, split, reject, isEmpty, trim, includes, curry, is, ifElse, toPairs, last, filter, head, when } from 'ramda'
 
 function useTailwind () {
-	const prefixClasses = (s: string)/*(x: string)*/ => compose(
+	const prefixClasses = curry((head: string, tail: string) => compose(
 		join(' '), 
 		map(
-			o(prefix(`${s}:`), trim)
+			o(prefix(`${head}`), trim)
 		),
 		reject(isEmpty),
 		split(' ')
-	)
-	const cl = (...strings: string[]) => o(
-		toKeys(true), 
-		map((i: string) => (
-			includes('->')(i)
-				? compose(
-						(a: string[]) => prefixClasses(a[0])(a[1]), 
-						map(trim), 
-						split('->')
-					)(i)
-				: i
+	)(tail))
+	
+	interface clObjInput {
+		[key: string]: boolean;
+	}
+	const cl = (...inputs: (string|clObjInput)[]): string => {
+		const fn = when(includes('->'), compose(
+			(a: string[]) => prefixClasses(...a), 
+			map(trim), 
+			split('->')
 		))
-	)(strings)
-	const lg = prefixClasses('lg')
+		const process = o(
+			join(' '),
+			map(ifElse(is(String), fn, compose(
+				join(' '),
+				map(o(fn, head)),
+				//@ts-ignore
+				filter(last),
+				toPairs
+			)))
+		)
+		return process(inputs)
+	}
+	const bgImg = (path: string, flag = true) => flag ? { backgroundImage: `url('${path}')` } : {}
 
 	return {
 		prefixClasses,
-		cl, lg
+		cl, bgImg
 	}
 }
 

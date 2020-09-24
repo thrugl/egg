@@ -1,80 +1,36 @@
 <template>
-	<Screen no-padding class="text-center min-h-screen" image="1">
-		<div :class="cl(
-			'p-6',
-			'lg -> flex'
-		)">
-			<header :class="cl(
-				'lg -> pt-4 w-1/3'
-			)">
-				<Logo :class="cl(
+	<Screen id="header" no-padding class="text-center" image="1">
+		<div class="absolute top-0 p-6 lg:flex">
+			<header class="lg:pt-4 lg:w-1/3">
+				<Logo :class="$t(
 					'inline-block text-center',
-					'lg -> block'
+					'lg: -> block'
 				)"/>
-				<div :class="cl(
-					'mt-2 oomph text-xl mb-4 w-full'
+				<div :class="$t(
+					'mt-2 mb-4 w-full text-xl oomph'
 				)">
-					{{ config.subtitle }}
+					{{ $c.subtitle }}
 				</div>
 			</header>
 
-			<div :class="cl(
-				'lg -> w-2/3 pt-6 pr-6 pl-12',
-				'xl -> pt-12'
+			<div :class="$t(
+				'lg: -> w-2/3 pt-6 pr-6 pl-12',
+				'xl: -> pt-12'
 			)">
-				<div :class="cl(
-					'',
-					'lg -> flex justify-end items-end',
-					'lg -> border-b border-gray-900 pb-6',
-					'xl -> items-center pb-4'
+				<div :class="$t(
+					'lg: -> pb-6 flex justify-end items-end',
+					'lg: -> border-b border-gray-900',
+					'xl: -> items-center pb-4'
 				)">
-					<MainPhone class="text-4xl oomph text-orange-600 hover:text-orange-700 font-light" size="8"/>
-					
-					<div class="py-2 leading-tight lg:inline-block flex-grow">
-						<span class="text-sm xl:mr-1">
-							Opið
-						</span> 
-						<br class="xl:hidden"/> 
-						<span class="text-xl oomph">
-							{{ config.openingHours }} 
-						</span> 
-						<br class="xl:hidden"/> 
-						<small class="xl:ml-1">{{ config.openDays }}</small>
-					</div>
-					
-					<small class="block mt-2 lg:max-w-3xs xl:max-w-none lg:text-left xl:text-center">
-						<span class="inline-block">
-							{{ config.address[0] }},&nbsp; 
-						</span>
-						<br class="lg:hidden"/> 
-						<span class="inline-block">
-							{{ config.city[0] }}
-						</span>
-						<br class="lg:hidden"/> 
-						<a href="stadsetning" class="inline-block mt-1 lg:ml-2">
-							<span>Sjá á korti</span>
-							<Icon name="marker" size="3"/>
-						</a>
-					</small>
+					<MainPhone size="8" :class="$t(
+						'text-4xl oomph font-light', 
+						'text-orange-600 hover:text-orange-700'
+					)"/>
+					<OpeningHours/>
+					<Address/>
 				</div>
 
-				<nav :class="cl(
-					'pt-12 text-center',
-					'lg -> pt-6 pl-24 pr-24',
-					'xl -> pt-4'
-				)">
-					<ul class="block w-full lg:flex">
-						<li class="lg:w-1/3">
-							<a href="#panta">Panta tíma</a>
-						</li>
-						<li class="lg:w-1/3">
-							<a href="#stadsetning">Staðsetning</a>
-						</li>
-						<li class="lg:w-1/3">
-							<a href="#hafa-samband">Hafa samband</a>
-						</li>
-					</ul>
-				</nav>
+				<NavBar/>
 			</div>
 
 		</div>
@@ -82,33 +38,25 @@
 </template>
 
 <script lang="ts">
-import config from '%/config.json'
-import formatPhone from '@/functions/formatPhone'
-import useTailwind from '#/useTailwind'
-
 import { defineComponent } from 'vue'
 
-import Icon      from '@@/gui/Icon.vue'
-import Logo      from '@@/gui/Logo.vue'
-import MainPhone from '@@/bits/MainPhone.vue'
-import Screen    from '@@/screens/Screen.vue'
+import Address      from '@@/blocks/Address.vue'
+import Logo         from '@@/gui/Logo.vue'
+import MainPhone    from '@@/bits/MainPhone.vue'
+import NavBar       from '@@/blocks/NavBar.vue'
+import OpeningHours from '@@/blocks/OpeningHours.vue'
+import Screen       from '@@/screens/Screen.vue'
 
 export default defineComponent({
 	name: 'TopScreen',
 
 	components: {
-		Icon,
+		Address,
 		Logo,
 		MainPhone,
+		NavBar,
+		OpeningHours,
 		Screen
-	},
-
-	setup () {
-		return { 
-			config, 
-			formatPhone,
-			...useTailwind()
-		}
 	}
 })
 </script>
