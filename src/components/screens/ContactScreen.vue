@@ -12,6 +12,7 @@
 			<TextField v-model="email" required label="Netfang" name="email"/>
 			<TextField v-model="phone" label="Símanúmer" name="phone"/>
 			<AreaField v-model="message" label="Fyrirspurn/ábending" name="message"/>
+			<input type="hidden" name="form-name" value="contact"/>
 
 			<Button text="Senda"/>
 		</form>
@@ -25,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import axios  from 'axios'
+import axios from 'axios'
 
 import { defineComponent, ref, computed } from 'vue'
 
@@ -69,7 +70,7 @@ export default defineComponent({
 
 		async function onSubmit () {
 			const config = { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
-			const load   = await axios.post('/', encoded.value, config)
+			const load   = await axios.post('/', encoded.value, config).catch(i => i)
 
 			console.log(load)
 
