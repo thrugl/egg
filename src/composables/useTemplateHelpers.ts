@@ -1,6 +1,7 @@
 import prefix from '@/functions/prefix'
 
-import { compose, o, join, map, split, reject, isEmpty, trim, includes, curry, is, ifElse, toPairs, last, filter, head, when } from 'ramda'
+import { compose, o, join, map, split, reject, isEmpty, trim, includes, 
+	curry, is, ifElse, toPairs, last, filter, head, when } from 'ramda'
 
 function useTailwind () {
 	const prefixClasses = curry((head: string, tail: string): string => compose(
@@ -35,10 +36,14 @@ function useTailwind () {
 		return process(inputs)
 	}
 	const $bgImage = (path: string, show = true) => show ? { backgroundImage: `url('${path}')` } : {}
+	const $windowHeight = () => window.innerHeight
+	const $windowWidth = () => window.innerWidth
 
 	return {
-		prefixClasses,
-		$t, $bgImage
+		$t, 
+		$bgImage,
+		$windowHeight,
+		$windowWidth
 	}
 }
 
