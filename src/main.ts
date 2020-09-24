@@ -1,6 +1,6 @@
-import config      from './config.json'
-import router      from './router'
-import useTailwind from '#/useTailwind'
+import config from './config.json'
+import router from './router'
+import useTemplateHelpers from '#/useTemplateHelpers'
 
 import { createApp } from 'vue'
 
@@ -14,10 +14,7 @@ createApp(Sprautuverk)
 		install: (app) => {
 			app.config.globalProperties = {
 				$c: config,
-				$t: useTailwind().cl,
-				$bgImg: useTailwind().bgImg,
-				$windowHeight: () => window.innerHeight,
-				$windowWidth: () => window.innerWidth,
+				...useTemplateHelpers(),
 				...app.config.globalProperties
 			}
 		}
