@@ -1,7 +1,7 @@
 <template>
 	<Screen no-border id="hafa-samband" heading="Hafa samband" tint="3" image="3">
 		
-		<form name="contact" 
+		<form name="contact" v-if="!isSubmitted"
 			data-netlify="true" 
 			data-netlify-honeypot="bot-field" 
 			style="max-width: 400px" 
@@ -11,10 +11,14 @@
 			<TextField v-model="name" required label="Nafn" name="name"/>
 			<TextField v-model="email" required label="Netfang" name="email"/>
 			<TextField v-model="phone" label="Símanúmer" name="phone"/>
-			<AreaField v-model="message" label="Fyrirspurn/athugasemd" name="message"/>
+			<AreaField v-model="message" label="Fyrirspurn/ábending" name="message"/>
 
 			<Button text="Senda"/>
 		</form>
+		<div v-else class="text-center">
+			<p><strong>Fyrirspurn hefur verið send!</strong></p>
+			<p>Við munum svara eins hratt og við getum.</p>
+		</div>
 
 		<slot/>
 	</Screen>
@@ -25,8 +29,8 @@ import axios  from 'axios'
 
 import { defineComponent, ref, computed } from 'vue'
 
-import Button    from '@@/gui/Button.vue'
-import Screen    from '@@/screens/Screen.vue'
+import Button from '@@/gui/Button.vue'
+import Screen from '@@/screens/Screen.vue'
 
 import { AreaField, TextField } from '@@/gui/fields'
 import { o, join, toPairs, map } from 'ramda'
@@ -65,8 +69,11 @@ export default defineComponent({
 
 		async function onSubmit () {
 			const config = { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+			const load   = await axios.post('/', encoded.value, config)
 
-			console.log(await axios.post('/', encoded.value, config))
+			console.log(load)
+
+			isSubmitted.value = true
 			
 		}
 
