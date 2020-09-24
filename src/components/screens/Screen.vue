@@ -1,13 +1,13 @@
 <template>
 	<component :is="tag" :id="id" :ref="e => self = e" 
-		:style="{ height, ...$bgImg(`car-${image}.jpg`, image) }" 
+		:style="{ height, ...$bgImage(`car-${image}.jpg`, image) }" 
 		:class="$t(
 			'text-white relative h-full',
 			'bg -> -fixed -contain -no-repeat -bottom',
 			'lg: -> min-h-screen',
 			{ 'border -> -b-4 -gray-900': !noBorder }
 	)">
-		<div :style="$bgImg(`tint-${tint}.png`, tint)" :class="$t(
+		<div :style="$bgImage(`tint-${tint}.png`, tint)" :class="$t(
 			'relative h-full w-full lg:min-h-screen flex justify-center items-center',
 			{ 'p -> x-6': !noPadding,
 				'bg-cover bg-no-repeat shadow-inner': tint }
