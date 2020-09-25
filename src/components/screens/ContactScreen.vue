@@ -4,7 +4,6 @@
 		<form name="contact" v-if="!isSubmitted"
 			method="POST"
 			data-netlify="true" 
-			data-netlify-honeypot="bot-field" 
 			style="max-width: 400px" 
 			class="mx-auto block"
 			@submit.prevent="onSubmit"
