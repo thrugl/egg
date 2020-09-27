@@ -73,7 +73,7 @@ export default defineComponent({
 			const method  = 'POST'
 			const body    = encoded.value
 			const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-			const load    = await okFetch('/contact', { method, body, headers })
+			const load    = await okFetch('/', { method, body, headers })
 
 			console.log(load)
 
