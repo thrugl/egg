@@ -5,7 +5,7 @@
 			class="mx-auto max-w-md"
 			@submit.prevent="onSubmit"
 		>
-			<TextField required label="Bílnúmer" name="licenceplate" v-model="plate"/>
+			<TextField required label="Bílnúmer" name="licenceplate" v-model="licenceplate"/>
 			<TextField required label="Umráðamaður bifreiðar" name="owner" v-model="owner"/>
 			<TextField required label="Kennitala" name="kt" v-model="kt"/>
 			<TextField required label="Sími" name="phone" v-model="phone"/>
