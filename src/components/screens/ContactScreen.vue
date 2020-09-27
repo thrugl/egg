@@ -56,10 +56,11 @@ export default defineComponent({
 
 		const encoded = computed<string>(() => {
 			const form = {
-				name: name.value,
-				email: email.value,
-				phone: phone.value,
-				message: message.value
+				'name': name.value,
+				'email': email.value,
+				'phone': phone.value,
+				'message': message.value,
+				'form-name': 'contact'
 			}
 			const __ = encodeURIComponent
 			const encode = ([ key, value ]: [string, any]) => `${__(key)}=${__(value)}`
