@@ -17,7 +17,7 @@ function useNetlifyForm (name: string, keys: string[], subject?: string) {
 	const formSubject = isNil(subject) ? `New ${toUpper(formName)} submission` : subject
 	const state    = reactive(o(fromPairs, map(pairUp))(keys))
 	const encoded  = computed<string>(() => {
-		const form = { ...state, 'form-name': formName }
+		const form = { ...state, 'form-name': formName, 'subject': formSubject }
 		return o(join('&'), map(encode))(toPairs(form))
 	})
 	
