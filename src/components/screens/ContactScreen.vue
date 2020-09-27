@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios'
+import { okFetch } from 'ok-fail'
 
 import { defineComponent, ref, computed } from 'vue'
 
@@ -70,8 +70,9 @@ export default defineComponent({
 		const isSubmitted = ref<boolean>(false)
 
 		async function onSubmit () {
-			const config = { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
-			const load   = await axios.post('/', encoded.value, config).catch(i => i)
+			const body    = encoded.value
+			const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+			const load    = await okFetch('/contact', { body, headers })
 
 			console.log(load)
 
