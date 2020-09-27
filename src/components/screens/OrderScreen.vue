@@ -27,7 +27,10 @@
 				]"
 			/>
 			<AreaField required label="Lýsing á tjóni" name="description" v-model="description"/>
+
 			<input type="hidden" name="form-name" :value="formName"/>
+			<input type="hidden" name="subject" :value="formSubject"/>
+
 			<Button text="Panta tíma"/>
 		</form>
 		<div v-else class="text-center bg-black bg-opacity-75 max-w-md mx-auto border border-orange-400 py-4 px-6">
@@ -71,7 +74,9 @@ export default defineComponent({
 					'liability',
 					'type',
 					'description'
-			])
+				],
+				'Ný pöntun af vef!'	
+			)
 		}
 	}
 })

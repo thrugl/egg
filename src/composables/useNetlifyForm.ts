@@ -1,8 +1,8 @@
-import { toPairs, fromPairs, map, join, o } from 'ramda'
+import { toPairs, fromPairs, map, join, o, toUpper, isNil } from 'ramda'
 import { computed, reactive, ref, toRefs } from 'vue'
 import { okFetch } from 'ok-fail'
 
-function useNetlifyForm (name: string, keys: string[]) {
+function useNetlifyForm (name: string, keys: string[], subject?: string) {
 	const pairUp = (i: string): [number, string] => [ i as unknown as number, '' ]
 	const encode = ([ key, value ]: [string, any]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
 
@@ -14,6 +14,7 @@ function useNetlifyForm (name: string, keys: string[]) {
 		'data-netlify': true, 
     'data-netlify-honeypot': 'bot-field'
 	}
+	const formSubject = isNil(subject) ? `New ${toUpper(formName)} submission` : subject
 	const state    = reactive(o(fromPairs, map(pairUp))(keys))
 	const encoded  = computed<string>(() => {
 		const form = { ...state, 'form-name': formName }
@@ -31,7 +32,7 @@ function useNetlifyForm (name: string, keys: string[]) {
 		isSubmitted.value = true
 	}
 
-	return { onSubmit, ...toRefs(state), encoded, formName, formProps, isSubmitted }
+	return { onSubmit, ...toRefs(state), encoded, formName, formProps, formSubject, isSubmitted }
 }
 
 export default useNetlifyForm

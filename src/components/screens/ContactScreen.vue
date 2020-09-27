@@ -10,7 +10,9 @@
 			<TextField v-model="email" required label="Netfang" name="email"/>
 			<TextField v-model="phone" label="Símanúmer" name="phone"/>
 			<AreaField v-model="message" label="Fyrirspurn/ábending" name="message"/>
+
 			<input type="hidden" name="form-name" :value="formName"/>
+			<input type="hidden" name="subject" :value="formSubject"/>
 
 			<Button text="Senda"/>
 		</form>
@@ -51,7 +53,9 @@ export default defineComponent({
 					'email', 
 					'phone', 
 					'message' 
-			])
+				],
+				'Ný skilaboð frá vef!'
+			)
 		}
 	}
 })
