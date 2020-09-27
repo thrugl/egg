@@ -5,6 +5,7 @@
 			action="/contact"
 			method="POST"
 			data-netlify="true" 
+    	data-netlify-honeypot="bot-field"
 			style="max-width: 400px" 
 			class="mx-auto block"
 			@submit.prevent="onSubmit"
