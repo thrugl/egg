@@ -2,6 +2,7 @@
 	<Screen no-border id="hafa-samband" heading="Hafa samband" tint="3" image="3">
 		
 		<form name="contact" v-if="!isSubmitted"
+			action="/contact"
 			method="POST"
 			data-netlify="true" 
 			style="max-width: 400px" 
