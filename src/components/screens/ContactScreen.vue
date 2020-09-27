@@ -70,9 +70,10 @@ export default defineComponent({
 		const isSubmitted = ref<boolean>(false)
 
 		async function onSubmit () {
+			const method  = 'POST'
 			const body    = encoded.value
 			const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-			const load    = await okFetch('/contact', { body, headers })
+			const load    = await okFetch('/contact', { method, body, headers })
 
 			console.log(load)
 
