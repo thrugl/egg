@@ -64,6 +64,7 @@ export default defineComponent({
 			}
 			const __ = encodeURIComponent
 			const encode = ([ key, value ]: [string, any]) => `${__(key)}=${__(value)}`
+			console.log(o(join('&'), map(encode))(toPairs(form)))
 			return o(join('&'), map(encode))(toPairs(form))
 		})
 
