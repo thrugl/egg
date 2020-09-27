@@ -1,9 +1,9 @@
 import { computed } from 'vue'
 
-function usePropModel(props: Data, emit: Emit, name = 'value') { 
+function usePropModel(props: Data, emit: Emit, name = 'modelValue') { 
   return computed({ 
     get: () => props[name], 
-    set: (value) => emit(`update${name === 'value' ? '' : `:${name}`}`, value) 
+    set: (value) => emit(`update:${name}`, value) 
   })
 }
 

@@ -27,7 +27,7 @@ export default defineComponent({
 	},
 
 	props: {
-		value: { type: [Number, String], default: '' },
+		modelValue: { type: [Number, String], default: '' },
 		options: { type: Array as PropType<(string|number|Option)[]>, default: () => [] },
 		noAutoPick: { type: Boolean, default: false }
 	},

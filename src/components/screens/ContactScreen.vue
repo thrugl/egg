@@ -1,11 +1,7 @@
 <template>
 	<Screen no-border id="hafa-samband" heading="Hafa samband" tint="3" image="3">
 		
-		<form name="contact" v-if="!isSubmitted"
-			action="/contact"
-			method="POST"
-			data-netlify="true" 
-    	data-netlify-honeypot="bot-field"
+		<form v-bind="formProps" v-if="!isSubmitted"
 			style="max-width: 400px" 
 			class="mx-auto block"
 			@submit.prevent="onSubmit"
@@ -14,11 +10,11 @@
 			<TextField v-model="email" required label="Netfang" name="email"/>
 			<TextField v-model="phone" label="Símanúmer" name="phone"/>
 			<AreaField v-model="message" label="Fyrirspurn/ábending" name="message"/>
-			<input type="hidden" name="form-name" value="contact"/>
+			<input type="hidden" name="form-name" :value="formName"/>
 
 			<Button text="Senda"/>
 		</form>
-		<div v-else class="text-center">
+		<div v-else class="text-center bg-black bg-opacity-75 max-w-md mx-auto border border-orange-400 py-4 px-6">
 			<p><strong>Fyrirspurn hefur verið send!</strong></p>
 			<p>Við munum svara eins hratt og við getum.</p>
 		</div>
@@ -28,15 +24,14 @@
 </template>
 
 <script lang="ts">
-import { okFetch } from 'ok-fail'
+import { defineComponent } from 'vue'
 
-import { defineComponent, ref, computed } from 'vue'
+import useNetlifyForm from '#/useNetlifyForm'
 
 import Button from '@@/gui/Button.vue'
 import Screen from '@@/screens/Screen.vue'
 
 import { AreaField, TextField } from '@@/gui/fields'
-import { o, join, toPairs, map } from 'ramda'
 
 export default defineComponent({
 	name: 'ContactScreen',
@@ -49,47 +44,14 @@ export default defineComponent({
 	},
 
 	setup () {
-		const name    = ref<string>('')
-		const email   = ref<string>('')
-		const phone   = ref<string>('')
-		const message = ref<string>('')
-
-		const encoded = computed<string>(() => {
-			const form = {
-				'name': name.value,
-				'email': email.value,
-				'phone': phone.value,
-				'message': message.value,
-				'form-name': 'contact'
-			}
-			const __ = encodeURIComponent
-			const encode = ([ key, value ]: [string, any]) => `${__(key)}=${__(value)}`
-			console.log(o(join('&'), map(encode))(toPairs(form)))
-			return o(join('&'), map(encode))(toPairs(form))
-		})
-
-		// SUBMIT
-
-		const isSubmitted = ref<boolean>(false)
-
-		async function onSubmit () {
-			const method  = 'POST'
-			const body    = encoded.value
-			const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-			const load    = await okFetch('/', { method, body, headers })
-
-			console.log(load)
-
-			isSubmitted.value = true
-			
-		}
-
 		return {
-			name,
-			email,
-			phone,
-			message,
-			onSubmit
+			...useNetlifyForm(
+				'contact', [ 
+					'name', 
+					'email', 
+					'phone', 
+					'message' 
+			])
 		}
 	}
 })

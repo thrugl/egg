@@ -25,7 +25,7 @@ export default defineComponent({
 
 	props: {
 		height: { type: [Number, String], default: 120 },
-		value: { type: [Number, String], default: '' },
+		modelValue: { type: [Number, String], default: '' },
 	},
 
 	setup (props, { emit }) {
