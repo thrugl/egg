@@ -4515,10 +4515,10 @@ gensync@^1.0.0-beta.1:
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.1.tgz#58f4361ff987e5ff6e1e7a210827aa371eaac269"
   integrity sha512-r8EC6NO1sngH/zdD9fiRDLdcgnbayXah+mLgManTaIZJqEC1MZstmnox8KpnI2/fxQwrp5OpCOYWLp4rBl4Jcg==
 
-geri@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/geri/-/geri-1.0.0.tgz#dc9665ae8e67f75d20cba31b6da7e430b62eef6e"
-  integrity sha512-ibhIL/6E/Or7Zrbah/bvKGAf5DIViRZGXQfRtzwEJSXRQk0FQrE75VcFXYYglhfn1Ktmt+SRHtlEq43DgBnVIw==
+geri@^1.1.0:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/geri/-/geri-1.1.3.tgz#6fe1d94dc85fc76ee4edcfd028740adf17bc28d3"
+  integrity sha512-1C0dp2FktfvXSvnWN0Ya1KU8kBCn+3tN2wXJb0xfTQkiz1Pacvt/zi0VOkzeTCrx1sQPp8riSUZVMWwnsgyJNQ==
   dependencies:
     ramda "^0.27.1"
 

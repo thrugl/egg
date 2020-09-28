@@ -24,7 +24,7 @@ import { replace } from 'ramda'
 import Screen from '@@/screens/Screen.vue'
 
 export default defineComponent({
-	name: 'TopScreen',
+	name: 'LocationScreen',
 
 	components: {
 		Screen

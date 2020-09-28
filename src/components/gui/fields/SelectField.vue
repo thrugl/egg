@@ -14,8 +14,8 @@
 import usePropModel from '#/usePropModel'
 
 import { defineComponent, computed, PropType, watch } from 'vue'
-import { is, map, update, either, find, isEmpty } from 'ramda'
-import { isShort } from 'geri'
+import { is, map, update, either, find, isEmpty, o } from 'ramda'
+import { isShort, defToNull, isPropTrue } from 'geri'
 
 import Field from './Field.vue'
 
@@ -34,15 +34,18 @@ export default defineComponent({
 
 	setup (props, { emit }) {
 		const model = usePropModel(props, emit)
-		const findSelected = find((i: Option) => i?.selected ?? false)
+		const findSelected = o(defToNull, find(isPropTrue('selected')))
 		const items = computed<Option[]>(() => {
-			const ifPrimary  = (i: number|string): Option => ({ text: `${i}`, value: i })
-			const toOption   = (i: string|number|Option): Option => either(is(String), is(Number))(i) ? ifPrimary(i as number|string) : (i as Option)
-
+			const objectify = (i: number|string): Option => ({ text: `${i}`, value: i })
+			const toOption  = (i: string|number|Option): Option => (
+				either(is(String), is(Number))(i) 
+					? objectify(i as number|string) 
+					: (i as Option)
+			)
 			const options = map(toOption)(props.options)
 			
 			return (
-				isShort(options)||props.noAutoPick||(findSelected(options) ?? false)
+				isShort(options)||props.noAutoPick||findSelected(options)
 					? options 
 					: update(0, { ...options[0], selected: true }, options) 
 			) 
@@ -50,7 +53,7 @@ export default defineComponent({
 
 		watch(() => props.options, () => {
 			if (isEmpty(model.value)) {
-				model.value = (findSelected(items.value)?.value) ?? ''
+				model.value = (findSelected(items.value) as Option|null)?.value ?? ''
 			}
 		})
 

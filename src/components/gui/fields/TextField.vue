@@ -9,26 +9,26 @@
 <script lang="ts">
 import usePropModel from '#/usePropModel'
 
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 import Field from './Field.vue'
 
 export default defineComponent({
-	name: 'TextArea',
+	name: 'TextField',
 
 	components: {
 		Field
 	},
 
 	props: {
-		height: { type: [Number, String], default: 120 },
-		modelValue: { type: [Number, String], default: '' },
+		height: { type: [Number, String] as PropType<number|string>, default: 120 },
+		modelValue: { type: [Number, String] as PropType<number|string>, default: '' },
 	},
 
 	setup (props, { emit }) {
-		const model = usePropModel(props, emit) 
-
-		return { model }
+		return { 
+			model: usePropModel(props, emit) 
+		}
 	}
 })
 </script>

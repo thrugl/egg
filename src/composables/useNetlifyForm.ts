@@ -6,6 +6,8 @@ function useNetlifyForm (name: string, keys: string[], subject?: string) {
 	const pairUp = (i: string): [number, string] => [ i as unknown as number, '' ]
 	const encode = ([ key, value ]: [string, any]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
 
+	// BASE
+
 	const formName = name
 	const formProps = {
 		'name': formName,
@@ -15,12 +17,17 @@ function useNetlifyForm (name: string, keys: string[], subject?: string) {
     'data-netlify-honeypot': 'bot-field'
 	}
 	const formSubject = isNil(subject) ? `New ${toUpper(formName)} submission` : subject
-	const state    = reactive(o(fromPairs, map(pairUp))(keys))
-	const encoded  = computed<string>(() => {
-		const form = { ...state, 'form-name': formName, 'subject': formSubject }
+
+	// FIELDS 
+
+	const fields = reactive(o(fromPairs, map(pairUp))(keys))
+	const encoded = computed<string>(() => {
+		const form = { ...fields, 'form-name': formName, 'subject': formSubject }
 		return o(join('&'), map(encode))(toPairs(form))
 	})
 	
+	// SUBMIT
+
 	const isSubmitted = ref<boolean>(false)
 	const onSubmit = async () => {
 		const method  = 'POST'
@@ -32,7 +39,11 @@ function useNetlifyForm (name: string, keys: string[], subject?: string) {
 		isSubmitted.value = true
 	}
 
-	return { onSubmit, ...toRefs(state), encoded, formName, formProps, formSubject, isSubmitted }
+	return { 
+		formName, formProps, formSubject, 
+		fields, ...toRefs(fields), encoded,
+		onSubmit, isSubmitted 
+	}
 }
 
 export default useNetlifyForm
